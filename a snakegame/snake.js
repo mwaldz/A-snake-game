@@ -13,9 +13,6 @@ appleImg.src = "img/apple.png";
 const mineImg = new Image();
 mineImg.src = "img/mine.png";
 
-const mushroomImg = new Image();
-mushroomImg.src = "img/mushroom.png";
-
 
 
 let end = new Audio();
@@ -47,10 +44,6 @@ let mine = {
 }
 let apple = {
     x : Math.floor(Math.random()*17+1) * box,
-    y : Math.floor(Math.random()*15+3) * box
-}
-let mushroom = {
-    x : Math.floor(Math.random()*17*1) * box,
     y : Math.floor(Math.random()*15+3) * box
 }
 
@@ -104,10 +97,7 @@ function draw(){
     ctx.drawImage(mineImg, mine.x, mine.y);
     ctx.drawImage(appleImg, apple.x, apple.y);
 
-    setInterval(function(){
-    ctx.drawImage(mushroomImg, mushroom.x, mushroom.y);
-   },30000);
-
+   
 
 
     let snakeX = snake[0].x;
@@ -133,9 +123,9 @@ function draw(){
     
         snake.pop();
     }
-    if (score % 5 == 0 && score!=0 && !speedUp) {
+    if (score % 10 == 0 && score!=0 && !speedUp) {
         console.log(speed);
-        speed *= 1.25;
+        speed *= 2;
         speedUp = true;
         if (score >= 100) return
         let game= setInterval(draw,basespeed/speed);
@@ -150,13 +140,7 @@ function draw(){
         } ,1000);
     }
 
-       if(snakeX == mushroom.x && snakeY == mushroom.y){
-        clearInterval(game);
-        end.play();
-        window.setTimeout(function(){
-         location.reload();
-        } ,1000);
-    }
+
 
 
 
